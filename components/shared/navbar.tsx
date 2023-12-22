@@ -6,7 +6,7 @@ import { ModeToggle } from "../mode-toggle";
 
 const Navbar = () => {
     return (
-        <nav className='p-2 flex items-center justify-between shadow-md border border-b-2 border-b-purple-500'>
+        <nav className='p-2 h-[10vh] flex items-center justify-between shadow-md border border-b-2 border-b-purple-500'>
             <Link
                 href={"/"}
                 className='text-xl font-bold border rounded-full p-1'
