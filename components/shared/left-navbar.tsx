@@ -1,24 +1,24 @@
 import React from "react";
 import AddContact from "../add-contact";
-import { PersonIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 
 const contacts = [
     {
         id: 1,
-        name: "Jane Doe",
-        phone: "1234567890",
+        name: "John",
+        username: "john",
     },
     {
         id: 2,
-        name: "Jane Doe",
-        phone: "1234567890",
+        name: "Jane",
+        username: "jane",
     },
     {
         id: 3,
-        name: "Jane Doe",
-        phone: "1234567890",
+        name: "Bob",
+        username: "bob",
     },
 ];
 
@@ -48,7 +48,7 @@ const LeftNavbar = () => {
                             <div className='w-full'>
                                 <p>{contact.name}</p>
                                 <p className='dark:text-muted text-black/20 text-sm'>
-                                    {contact.phone}
+                                    {contact.username}
                                 </p>
                             </div>
                         </Link>
@@ -56,7 +56,10 @@ const LeftNavbar = () => {
                 </div>
                 <div className='space-y-2'>
                     <hr />
-                    <AddContact />
+                    <div className='space-y-2 flex justify-between'>
+                        <AddContact />
+                        <UserButton />
+                    </div>
                 </div>
             </div>
         </nav>

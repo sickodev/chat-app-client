@@ -21,26 +21,39 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Input } from "./ui/input";
+import { useEffect, useState } from "react";
 
 const AddContact = () => {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const formSchema = z.object({
         name: z.string().min(1, {
             message: "Name must be at least 1 character",
         }),
-        phone: z.coerce.number(),
+        username: z.string().min(3, {
+            message: "Username must be at least 3 characters",
+        }),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
-            phone: 0,
+            username: "",
         },
     });
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         console.log(values);
     };
+
+    if (!mounted) {
+        return null;
+    }
 
     return (
         <Dialog>
@@ -85,11 +98,11 @@ const AddContact = () => {
                         />
                         <FormField
                             control={form.control}
-                            name='phone'
+                            name='username'
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className='mx-2'>
-                                        Phone Number
+                                        Username
                                     </FormLabel>
                                     <FormControl>
                                         <Input

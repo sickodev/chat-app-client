@@ -1,22 +1,7 @@
 "use client";
-import React from "react";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import {
-    CameraIcon,
-    FileIcon,
-    FilePlusIcon,
-    PaperPlaneIcon,
-    PlayIcon,
-} from "@radix-ui/react-icons";
+import { FilePlusIcon } from "@radix-ui/react-icons";
 import {
     Dialog,
     DialogContent,
@@ -28,6 +13,14 @@ import {
 import { Input } from "./ui/input";
 
 const AttachFiles = () => {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
     return (
         <Dialog>
             <DialogTrigger>
